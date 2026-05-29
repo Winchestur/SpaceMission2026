@@ -42,8 +42,7 @@
             int[] dRow = { -1, 1, 0, 0 };
             int[] dCol = { 0, 0, -1, 1 };
 
-            int newRow = 0;
-            int newCol = 0;
+            int newRow, newCol = 0;
 
             //Space travel logic
 
