@@ -4,8 +4,11 @@
     {
         static void Main(string[] args)
         {
+            Console.Write("Map rows: ");
             int rows = int.Parse(Console.ReadLine());
+            Console.Write("Map columns: ");
             int cols = int.Parse(Console.ReadLine());
+            Console.WriteLine("Cosmic map: ");
 
             string[,] matrix = new string[rows, cols];
 
@@ -29,12 +32,33 @@
 
             PathFinder pathFinder = new PathFinder(matrix);
 
+            List<MissionResult> results = new();
+            List<string> failedAstronauts = new();
+
             foreach (Astronaut astronaut in astronauts)
             {
-                string[,] resultMatrix = pathFinder.FindPath(astronaut);
+                MissionResult? result = pathFinder.FindPath(astronaut);
 
-                Console.WriteLine($"Path for {astronaut.Name}:");
-                PrintMatrix(resultMatrix);
+                if (result == null)
+                {
+                    failedAstronauts.Add(astronaut.Name!);
+                }
+                else
+                {
+                    results.Add(result);
+                }
+            }
+
+            foreach (string astronautName in failedAstronauts)
+            {
+                Console.WriteLine($"Mission failed — Astronaut {astronautName} lost in space!");
+            }
+
+            foreach (MissionResult result in results.OrderBy(r => r.Steps))
+            {
+                Console.WriteLine($"Astronaut {result.AstronautName} - Shortest path: {result.Steps} steps");
+
+                PrintMatrix(result.Map!);
             }
         }
 

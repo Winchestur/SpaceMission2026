@@ -11,7 +11,7 @@
             this.matrix = matrix;
         }
 
-        public string[,] FindPath(Astronaut astronaut)
+        public MissionResult? FindPath(Astronaut astronaut)
         {
             Queue<(int row, int col, int count)> queue = new();
 
@@ -59,10 +59,15 @@
                                 newRow,
                                 newCol);
 
-                            return newMatrix;
+                            return new MissionResult
+                            {
+                                AstronautName = astronaut.Name,
+                                Steps = count + 1,
+                                Map = newMatrix
+                            };
                         }
 
-                        if (matrix[newRow, newCol] == "O")
+                        if (matrix[newRow, newCol] == "0")
                         {
                             visited[newRow, newCol] = true;
                             path[newRow, newCol] = (currentRow, currentCol);
@@ -73,7 +78,7 @@
                 }
             }
 
-            return newMatrix;
+            return null;
         }
 
         private void DrawPath(
