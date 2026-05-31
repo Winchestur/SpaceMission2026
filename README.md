@@ -143,5 +143,5 @@ Through this project I practiced:
 
 ---
 
-![Output](Screenshots/Output.png)
+![Output](SpaceMission2026/Screenshots/Output.png)
 
