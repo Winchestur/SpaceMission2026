@@ -143,5 +143,5 @@ Through this project I practiced:
 
 ---
 
-![Screenshot 2026-05-31 222249](https://hackmd.io/_uploads/rJqTqW9xzl.png)
+![Output](Screenshots/Output.png)
 
